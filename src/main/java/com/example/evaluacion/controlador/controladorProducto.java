@@ -18,11 +18,15 @@ public class controladorProducto {
     public String agregar(@RequestBody Producto p){return sp.agregarProducto(p);}
 
     @GetMapping("/precio-mayor")
-    public String mayor(){return sp.PrecioMayor();}
+    public Producto mayor(){return sp.Eliminar(sp.PrecioMayor());}
 
-    @PostMapping("/precio-min")
-    public String minimo(@RequestBody Producto t){return sp.PrecioMenor(t);}
-}
+    @GetMapping("/precio-min")
+    public ArrayList<Producto> minimo(){return sp.PrecioMenor();}
+
+    @PutMapping("/editar/{cod}")
+    public String editar(@PathVariable("cod") int cod, @RequestBody Producto p) {return sp.editar(cod, p);}
+
+    }
 
 
 

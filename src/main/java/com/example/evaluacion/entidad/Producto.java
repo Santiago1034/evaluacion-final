@@ -25,7 +25,8 @@ public class Producto {
     }
 
     public int getTotal() {
-        return total;
+        this.total = this.getCantidad() * this.getPrecio();
+        return this.total;
     }
 
     public void setTotal(int total) {

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class servicioProducto {
     private ArrayList<Producto> lista = new ArrayList<>();
 
+    private ArrayList<Producto> minimos = new ArrayList<>();
+
     public servicioProducto(){
         lista.add(new Producto(1,"pera","frutas",6000,4));
         lista.add(new Producto(2,"manzana","frutas",7000,5));
@@ -25,42 +27,22 @@ public class servicioProducto {
 
     public ArrayList<Producto> mostar() {
 
-        var total = 0;
-        for (Producto pm : lista) {
-            total = pm.getPrecio() * pm.getCantidad();
-            pm.setTotal(total);
-        }
         return lista;
     }
 
-    /*public String precioMayor(){
-        ArrayList<Producto> listtotal = new ArrayList<>();
-        var  max = 0;
-        Boolean cond = false;
-
-        for (Producto pm:lista){
-            if (pm.getTotal()> max){
-                max = pm.getTotal();
-                listtotal.add(pm);
-                cond = true;
-
-
+    public Producto Eliminar(Producto p){
+        Producto mostrar = p;
+        for (Producto pt : lista) {
+            if (pt.getCodigo() == p.getCodigo()) {
+                lista.remove(pt);
+                break;
             }
-
         }
-        if(cond == true){
-            for (Producto pe:listtotal){
-                lista.remove(pe);
-            }
+        return mostrar;
+    }
 
 
-        }
-        return  "el total maximo es " + max ;
-
-    }*/
-
-
-    public String PrecioMayor(){
+    public Producto PrecioMayor(){
         Producto total = null;
         int precioMay = 0;
         for (Producto pt:lista){
@@ -69,28 +51,46 @@ public class servicioProducto {
                 total = pt;
 
             }
-        }lista.remove(total);
-        return "el precio mayor es " + precioMay ;
+        }
+        return total;
 
     }
 
-    public String PrecioMenor(Producto pz) {
-        Producto min = null;
-        int preciomin = 0;
-
+    public ArrayList<Producto> PrecioMenor() {
+        Producto min = PrecioMayor();
+        /// la lista se limpia para que no se añadan de nuevo los mismos datos
+        minimos.clear();
         for (Producto pn : lista) {
-            if (pn.getTotal() > 0 && pn.getTotal() < 10000000) {
-                preciomin = pn.getTotal();
+            if (pn.getTotal() < min.getTotal()) {
                 min = pn;
-
-
-
             }
+        }
+        for (Producto pn : lista) {
+            if (pn.getTotal() == min.getTotal()) {
 
+                minimos.add(pn);
+            }
+        }
+        return minimos;
 
-
-        }lista.remove(min);
-        lista.add(pz);
-        return "el precio minimo es " + min;
     }
+
+    public String editar(int codigo, Producto p) {
+        String mensaje = "no se encontro el producto a editar";
+        for (Producto pr: lista){
+            if (codigo == pr.getCodigo()){
+                lista.add(p);
+                lista.remove(pr);
+                mensaje = "El producto con codigo " + p.getCodigo() + " se edito correctamente";
+                break;
+            }
+        }
+        return mensaje;
     }
+
+
+
+
+
+}
+
