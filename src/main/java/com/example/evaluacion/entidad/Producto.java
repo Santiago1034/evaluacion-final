@@ -26,7 +26,7 @@ public class Producto {
 
     public int getTotal() {
         this.total = this.getCantidad() * this.getPrecio();
-        return this.total;
+        return total;
     }
 
     public void setTotal(int total) {
@@ -85,5 +85,3 @@ public class Producto {
                 '}';
     }
 }
-
-

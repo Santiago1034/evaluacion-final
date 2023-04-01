@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class servicioProducto {
     private ArrayList<Producto> lista = new ArrayList<>();
-
     private ArrayList<Producto> minimos = new ArrayList<>();
 
     public servicioProducto(){
@@ -26,7 +25,6 @@ public class servicioProducto {
     }
 
     public ArrayList<Producto> mostar() {
-
         return lista;
     }
 
@@ -42,37 +40,38 @@ public class servicioProducto {
     }
 
 
-    public Producto PrecioMayor(){
+    public Producto PrecioMayor() {
+
         Producto total = null;
         int precioMay = 0;
-        for (Producto pt:lista){
-            if (pt.getTotal()> precioMay){
+        for (Producto pt : lista) {
+            if (pt.getTotal() > precioMay) {
                 precioMay = pt.getTotal();
                 total = pt;
-
             }
         }
+        /*1*/
         return total;
-
     }
 
     public ArrayList<Producto> PrecioMenor() {
+
         Producto min = PrecioMayor();
-        /// la lista se limpia para que no se añadan de nuevo los mismos datos
+
         minimos.clear();
         for (Producto pn : lista) {
             if (pn.getTotal() < min.getTotal()) {
                 min = pn;
             }
         }
+
         for (Producto pn : lista) {
             if (pn.getTotal() == min.getTotal()) {
-
+                /*4. */
                 minimos.add(pn);
             }
         }
         return minimos;
-
     }
 
     public String editar(int codigo, Producto p) {
@@ -91,6 +90,4 @@ public class servicioProducto {
 
 
 
-
-}
-
+    }

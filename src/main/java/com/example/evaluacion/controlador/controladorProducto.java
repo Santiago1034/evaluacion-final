@@ -24,9 +24,7 @@ public class controladorProducto {
     public ArrayList<Producto> minimo(){return sp.PrecioMenor();}
 
     @PutMapping("/editar/{cod}")
-    public String editar(@PathVariable("cod") int cod, @RequestBody Producto p) {return sp.editar(cod, p);}
-
+    public String editar(@PathVariable("cod") int cod, @RequestBody Producto p) {
+        return sp.editar(cod, p);
     }
-
-
-
+}
